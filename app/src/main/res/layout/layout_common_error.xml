@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="errorModel"
+            type="com.example.weatherandroidassignment.ui.viewmodel.ErrorModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:background="@drawable/bg_rounded_left_top_white"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/iv_some_illustration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:src="@drawable/nointernet_connection" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_some_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:lineSpacingExtra="0sp"
+                        android:text="@{errorModel.errorTitle}"
+                        android:textAlignment="center"
+                        android:textColor="@color/black_4a"
+                        android:textSize="18sp"
+                        tools:text="@string/some_thing_went_wrong" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_some_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:lineSpacingExtra="0sp"
+                        android:text="@{errorModel.errorSubTitle}"
+                        android:textAlignment="center"
+                        android:textColor="@color/grey_92"
+                        android:textSize="15sp"
+                        tools:text="@string/signal_break" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/bg_round_white"
+                    android:gravity="center"
+                    android:onClick="@{() -> errorModel.errorActionListener.onErrorActionClicked()}"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/retry"
+                        android:textColor="@color/purple"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</layout>
+

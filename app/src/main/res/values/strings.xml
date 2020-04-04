@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="some_thing_went_wrong">Something went wrong..</string>
+    <string name="signal_break">An alien is probably blocking your signal</string>
+    <string name="retry">RETRY</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="welcome_message">Welcome to Weather Forecast</string>
+    <string name="location_denied_message">Accepting location is compulsory. Navigating back to the previous screen.</string>
+    <string name="city_name_hint">Jaipur</string>
+    <string name="date_hint">18 March 2020, 10:00 PM</string>
+    <string name="status_hint">haze</string>
+    <string name="temp_hint">23°C</string>
+    <string name="min_temp_hint">Min Temp 21°C</string>
+    <string name="max_temp_hint">Max Temp 25°C</string>
+    <string name="degree">\u00B0</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="wind">Wind</string>
+    <string name="pressure">Pressure</string>
+    <string name="humidity">Humidity</string>
+    <string name="develop_by">Develop by</string>
+    <string name="sunrise_time">6:31 AM</string>
+    <string name="sunset_time">6:31 PM</string>
+    <string name="wind_speed">4 km/hr</string>
+    <string name="pressure_text">1013 mb</string>
+    <string name="humidity_text">29%</string>
+    <string name="yash">Yash Bhardwaj</string>
+</resources>
