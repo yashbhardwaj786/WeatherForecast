@@ -1,14 +1,14 @@
 package com.example.weatherandroidassignment
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.weatherandroidassignment.data.db.AppDataBase
 import com.example.weatherandroidassignment.data.network.RestAPIClient
 import com.example.weatherandroidassignment.data.network.SafeApiRequest
 import com.example.weatherandroidassignment.data.network.response.WeatherResponse
-import com.example.weatherandroidassignment.data.prefrences.PreferenceProvider
 import com.example.weatherandroidassignment.data.repository.MainRepository
 import com.example.weatherandroidassignment.data.repository.MainRepository.Companion.API_KEY
 import com.example.weatherandroidassignment.data.repository.MainRepository.Companion.METRIC
+import com.example.weatherandroidassignment.data.repository.MainRepository.Companion.DAY_COUNT
+import com.example.weatherandroidassignment.data.repository.MainRepository.Companion.MODE
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
@@ -31,12 +31,6 @@ class MainRepositoryTest {
     @Mock
     private lateinit var safeApiRequest: SafeApiRequest
 
-    @Mock
-    private lateinit var appDataBase: AppDataBase
-
-    @Mock
-    private lateinit var preference: PreferenceProvider
-
     // Instant task Rule executor for Live data Mocking
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -51,7 +45,7 @@ class MainRepositoryTest {
     fun setup() {
         MockitoAnnotations.initMocks(this)
         Dispatchers.setMain(testDispatcher)
-        mainRepository = MainRepository(myAPi, appDataBase, preference)
+        mainRepository = MainRepository(myAPi)
     }
 
     @After
@@ -65,13 +59,13 @@ class MainRepositoryTest {
 
             //Given
             val popularRepositoryData = Mockito.mock(WeatherResponse::class.java)
-            whenever( safeApiRequest.apiRequest { myAPi.getWeatherDetails("Jaipur", METRIC, API_KEY)}).thenReturn(popularRepositoryData)
+            whenever( safeApiRequest.apiRequest { myAPi.getWeatherDetails("Jaipur", METRIC, API_KEY, DAY_COUNT, MODE)}).thenReturn(popularRepositoryData)
 
             //When
-            myAPi.getWeatherDetails("Jaipur", METRIC, API_KEY)
+            myAPi.getWeatherDetails("Jaipur", METRIC, API_KEY, DAY_COUNT, MODE)
 
             //Then
-            verify(myAPi, times(1)).getWeatherDetails("Jaipur", METRIC, API_KEY)
+            verify(myAPi, times(1)).getWeatherDetails("Jaipur", METRIC, API_KEY, DAY_COUNT, MODE)
             verifyNoMoreInteractions(myAPi)
         }
     }

@@ -48,14 +48,6 @@ class MainActivityTest {
 
     @Test
     fun `main activity executes api call`() {
-        Mockito.doNothing().`when`(mainViewModel).getWeather("Jaipur")
-
-        verify(mainViewModel, times(0)).getWeather("Jaipur")
-        verifyNoMoreInteractions(mainViewModel)
-    }
-
-    @Test
-    fun `main activity executes api call on refresh`() {
         Mockito.doNothing().`when`(mainViewModel).apiCallToGetWeatherData("Jaipur")
 
         verify(mainViewModel, times(0)).apiCallToGetWeatherData("Jaipur")
