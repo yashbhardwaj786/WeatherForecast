@@ -88,16 +88,18 @@
                     android:visibility="@{viewModel.onError ? View.VISIBLE : View.GONE}"
                     app:errorModel="@{errorModel}" />
 
-                <LinearLayout
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
+                    android:fillViewport="true"
+                    android:fitsSystemWindows="true"
                     android:visibility="@{viewModel.onError ? View.GONE : View.VISIBLE}">
 
                     <RelativeLayout
                         android:id="@+id/mainContainer"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:background="@drawable/bg_gradient"
                         android:padding="16dp">
 
@@ -195,252 +197,264 @@
                                     tools:text="@string/max_temp_hint" />
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:id="@+id/detailsContainer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:weightSum="3">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@color/white_F1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:tint="@color/white"
+                                            app:srcCompat="@drawable/sunrise" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@string/sunrise"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@{sunriseTime}"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp"
+                                            tools:text="@string/sunrise_time" />
+
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_weight="1"
+                                        android:background="@color/white_F1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:tint="@color/white"
+                                            app:srcCompat="@drawable/sunset" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@string/sunset"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@{sunsetTime}"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp"
+                                            tools:text="@string/sunset_time" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_weight="1"
+                                        android:background="@color/white_F1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:tint="@color/white"
+                                            app:srcCompat="@drawable/wind" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@string/wind"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@{data.speed +` m/s`}"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp"
+                                            tools:text="@string/wind_speed" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal"
+                                    android:weightSum="3">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@color/white_F1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:tint="@color/white"
+                                            app:srcCompat="@drawable/pressure" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@string/pressure"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@{data.pressure +` hpa`}"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp"
+                                            tools:text="@string/pressure_text" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_weight="1"
+                                        android:background="@color/white_F1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:tint="@color/white"
+                                            app:srcCompat="@drawable/humidity" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@string/humidity"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@{data.humidity +`%`}"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp"
+                                            tools:text="@string/humidity_text" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_weight="1"
+                                        android:background="@color/white_F1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <androidx.appcompat.widget.AppCompatImageView
+                                            android:layout_width="25dp"
+                                            android:layout_height="25dp"
+                                            android:tint="@color/white"
+                                            app:srcCompat="@drawable/info" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@string/develop_by"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/roboto"
+                                            android:text="@string/yash"
+                                            android:textColor="@color/white"
+                                            android:textSize="12sp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
-
-                        <LinearLayout
-                            android:id="@+id/detailsContainer"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/weeklyWeatherRecyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/overviewContainer"
                             android:layout_alignParentBottom="true"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:weightSum="3">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@color/white_F1"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="8dp">
-
-                                    <androidx.appcompat.widget.AppCompatImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:tint="@color/white"
-                                        app:srcCompat="@drawable/sunrise" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@string/sunrise"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@{sunriseTime}"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp"
-                                        tools:text="@string/sunrise_time" />
-
-                                </LinearLayout>
-
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_weight="1"
-                                    android:background="@color/white_F1"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="8dp">
-
-                                    <androidx.appcompat.widget.AppCompatImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:tint="@color/white"
-                                        app:srcCompat="@drawable/sunset" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@string/sunset"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@{sunsetTime}"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp"
-                                        tools:text="@string/sunset_time" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_weight="1"
-                                    android:background="@color/white_F1"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="8dp">
-
-                                    <androidx.appcompat.widget.AppCompatImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:tint="@color/white"
-                                        app:srcCompat="@drawable/wind" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@string/wind"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@{data.speed +` m/s`}"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp"
-                                        tools:text="@string/wind_speed" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:orientation="horizontal"
-                                android:weightSum="3">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@color/white_F1"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="8dp">
-
-                                    <androidx.appcompat.widget.AppCompatImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:tint="@color/white"
-                                        app:srcCompat="@drawable/pressure" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@string/pressure"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@{data.pressure +` hpa`}"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp"
-                                        tools:text="@string/pressure_text" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_weight="1"
-                                    android:background="@color/white_F1"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="8dp">
-
-                                    <androidx.appcompat.widget.AppCompatImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:tint="@color/white"
-                                        app:srcCompat="@drawable/humidity" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@string/humidity"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@{data.humidity +`%`}"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp"
-                                        tools:text="@string/humidity_text" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_weight="1"
-                                    android:background="@color/white_F1"
-                                    android:gravity="center"
-                                    android:orientation="vertical"
-                                    android:padding="8dp">
-
-                                    <androidx.appcompat.widget.AppCompatImageView
-                                        android:layout_width="25dp"
-                                        android:layout_height="25dp"
-                                        android:tint="@color/white"
-                                        app:srcCompat="@drawable/info" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@string/develop_by"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp" />
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="@string/yash"
-                                        android:textColor="@color/white"
-                                        android:textSize="12sp" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
+                            android:layout_margin="10dp"
+                            android:scrollbarSize="1dp"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:visibility="visible"
+                            tools:listitem="@layout/layout_weather_item" />
 
                     </RelativeLayout>
 
-                </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
 
             </LinearLayout>
 

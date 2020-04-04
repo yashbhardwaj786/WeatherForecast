@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.weatherandroidassignment.data.network.response.WeatherResult" />
+
+        <import type="android.view.View" />
+
+        <import type="android.graphics.Color" />
+
+        <variable
+            name="viewModel"
+            type="com.example.weatherandroidassignment.ui.viewmodel.MainViewModel" />
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sunday"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:fontFamily="@font/roboto"
+            tools:text="Today" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apr 4"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:fontFamily="@font/roboto"
+            tools:text="Apr 4" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/nav_header_desc"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_wb_sunny" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.weather.get(0).main}"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:fontFamily="@font/roboto"
+            tools:text="Clear" />
+
+    </LinearLayout>
+
+
+</layout>
