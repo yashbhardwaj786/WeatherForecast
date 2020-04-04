@@ -10,6 +10,11 @@ import com.example.weatherandroidassignment.R
 import com.example.weatherandroidassignment.data.network.response.WeatherResult
 import com.example.weatherandroidassignment.databinding.LayoutWeatherItemBinding
 import com.example.weatherandroidassignment.ui.viewmodel.MainViewModel
+import com.example.weatherandroidassignment.utils.DateFormat
+import com.example.weatherandroidassignment.utils.getSimpleDateFormat
+import com.example.weatherandroidassignment.utils.getTimeInHours
+import java.util.*
+import kotlin.collections.ArrayList
 
 class WeatherListAdapter(
     private val context: Context,
@@ -34,6 +39,21 @@ class WeatherListAdapter(
         holder.binding.data = weatherResult
         holder.binding.viewModel = model
 
+        val currentDate: Date = Calendar.getInstance().time
+        var currentDay = ""
+        val df = getSimpleDateFormat(DateFormat.USER_READABLE_WITH_DAY)
+        df?.let { sdf ->
+            currentDay  = sdf.format(currentDate)
+        }
+        val day = getTimeInHours(weatherResult.dt * 1000, DateFormat.USER_READABLE_WITH_DAY)
+        if (day == currentDay){
+            holder.binding.currentDay = "Today"
+        } else {
+            holder.binding.currentDay = day
+        }
+
+        val date = getTimeInHours(weatherResult.dt * 1000, DateFormat.USER_READABLE_WITH_DATE)
+        holder.binding.currentDate = date
     }
 
     class WeatherAdapterViewHolder(itemView: View, var binding: LayoutWeatherItemBinding) :

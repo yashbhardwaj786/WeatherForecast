@@ -66,11 +66,11 @@ class MainActivity : BaseActivity(), KodeinAware {
             val weatherResult = it.list[0]
             binding.data = weatherResult
             binding.cityData = it.city
-            val c: Date = Calendar.getInstance().time
 
+            val currentDate: Date = Calendar.getInstance().time
             val df = getSimpleDateFormat(DateFormat.USER_READABLE_WITH_TIME)
             df?.let { sdf ->
-                binding.date = sdf.format(c)
+                binding.date = sdf.format(currentDate)
             }
 
             weatherResult.sunrise.let { sunriseTime ->

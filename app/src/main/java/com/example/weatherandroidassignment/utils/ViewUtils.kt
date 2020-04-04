@@ -15,20 +15,37 @@ fun getCurrentTime(): Long{
 }
 
 enum class DateFormat {
-    USER_READABLE_WITH_TIME, TWELVE_FOUR_HOURS
+    USER_READABLE_WITH_TIME, TWELVE_FOUR_HOURS, USER_READABLE_WITH_DAY, USER_READABLE_WITH_DATE
 }
 
 fun getSimpleDateFormat(dateFormat: DateFormat): SimpleDateFormat? {
     var simpleDateFormat: SimpleDateFormat? = null
-    if (dateFormat == DateFormat.USER_READABLE_WITH_TIME) {
-        simpleDateFormat =
-            SimpleDateFormat("dd MMMM YYYY, hh:mm a", Locale.ENGLISH)
-    } else if (dateFormat == DateFormat.TWELVE_FOUR_HOURS) {
-        simpleDateFormat =
-            SimpleDateFormat(
-                "hh:mm a",
-                Locale.ENGLISH
-            )
+    when (dateFormat) {
+        DateFormat.USER_READABLE_WITH_TIME -> {
+            simpleDateFormat =
+                SimpleDateFormat("dd MMMM YYYY, hh:mm a", Locale.ENGLISH)
+        }
+        DateFormat.TWELVE_FOUR_HOURS -> {
+            simpleDateFormat =
+                SimpleDateFormat(
+                    "hh:mm a",
+                    Locale.ENGLISH
+                )
+        }
+        DateFormat.USER_READABLE_WITH_DAY -> {
+            simpleDateFormat =
+                SimpleDateFormat(
+                    "EEEE",
+                    Locale.ENGLISH
+                )
+        }
+        DateFormat.USER_READABLE_WITH_DATE -> {
+            simpleDateFormat =
+                SimpleDateFormat(
+                    "MMM dd",
+                    Locale.ENGLISH
+                )
+        }
     }
     return simpleDateFormat
 }

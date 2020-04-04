@@ -93,107 +93,101 @@
                     android:layout_height="match_parent"
                     android:fillViewport="true"
                     android:fitsSystemWindows="true"
+                    android:scrollbars="vertical"
                     android:visibility="@{viewModel.onError ? View.GONE : View.VISIBLE}">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:id="@+id/mainContainer"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:orientation="vertical"
                         android:background="@drawable/bg_gradient"
                         android:padding="16dp">
-
-                        <LinearLayout
-                            android:id="@+id/addressContainer"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
                                 android:fontFamily="@font/roboto_bold"
-                                android:padding="10dp"
+                                android:layout_gravity="center"
                                 android:text="@{cityData.name +` (`+ cityData.country +`)`}"
                                 android:textColor="@color/white"
-                                android:textSize="21sp"
+                                android:textSize="18sp"
                                 tools:text="@string/city_name_hint" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
+                                android:layout_marginTop="5dp"
                                 android:fontFamily="@font/roboto"
                                 android:padding="5dp"
+                                android:layout_gravity="center"
                                 android:text="@{date}"
                                 android:textColor="@color/white"
-                                android:textSize="18sp"
+                                android:textSize="14sp"
                                 tools:text="@string/date_hint" />
-                        </LinearLayout>
 
 
                         <LinearLayout
                             android:id="@+id/overviewContainer"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_gravity="center"
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
+                                android:layout_marginTop="5dp"
                                 android:fontFamily="@font/roboto"
                                 android:text="@{status}"
                                 android:textColor="@color/white"
-                                android:textSize="16sp"
+                                android:textSize="12sp"
                                 tools:text="@string/status_hint" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
+                                android:layout_marginTop="5dp"
                                 android:fontFamily="@font/roboto_italic"
                                 android:text="@{averageTemp + @string/degree +`C`}"
                                 android:textColor="@color/white"
-                                android:textSize="50sp"
+                                android:textSize="20sp"
                                 tools:text="@string/temp_hint" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginTop="5dp"
                                 android:orientation="horizontal">
 
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/roboto_italic"
                                     android:gravity="center"
                                     android:text="@{`Min Temp:`+data.temp.min + @string/degree +`C`}"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp"
+                                    android:textSize="14sp"
                                     tools:text="@string/min_temp_hint" />
 
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginEnd="16dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/roboto_italic"
                                     android:gravity="center"
                                     android:text="@{`Max Temp:`+data.temp.max + @string/degree +`C`}"
                                     android:textColor="@color/white"
-                                    android:textSize="18sp"
+                                    android:textSize="14sp"
                                     tools:text="@string/max_temp_hint" />
                             </LinearLayout>
 
@@ -201,7 +195,7 @@
                                 android:id="@+id/detailsContainer"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
+                                android:layout_marginTop="16dp"
                                 android:orientation="vertical">
 
                                 <LinearLayout
@@ -232,7 +226,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@string/sunrise"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp" />
+                                            android:textSize="10sp" />
 
                                         <androidx.appcompat.widget.AppCompatTextView
                                             android:layout_width="wrap_content"
@@ -240,7 +234,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@{sunriseTime}"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp"
+                                            android:textSize="10sp"
                                             tools:text="@string/sunrise_time" />
 
                                     </LinearLayout>
@@ -269,7 +263,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@string/sunset"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp" />
+                                            android:textSize="10sp" />
 
                                         <androidx.appcompat.widget.AppCompatTextView
                                             android:layout_width="wrap_content"
@@ -277,7 +271,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@{sunsetTime}"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp"
+                                            android:textSize="10sp"
                                             tools:text="@string/sunset_time" />
 
                                     </LinearLayout>
@@ -305,7 +299,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@string/wind"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp" />
+                                            android:textSize="10sp" />
 
                                         <androidx.appcompat.widget.AppCompatTextView
                                             android:layout_width="wrap_content"
@@ -313,7 +307,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@{data.speed +` m/s`}"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp"
+                                            android:textSize="10sp"
                                             tools:text="@string/wind_speed" />
 
                                     </LinearLayout>
@@ -349,7 +343,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@string/pressure"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp" />
+                                            android:textSize="10sp" />
 
                                         <androidx.appcompat.widget.AppCompatTextView
                                             android:layout_width="wrap_content"
@@ -357,7 +351,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@{data.pressure +` hpa`}"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp"
+                                            android:textSize="10sp"
                                             tools:text="@string/pressure_text" />
 
                                     </LinearLayout>
@@ -385,7 +379,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@string/humidity"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp" />
+                                            android:textSize="10sp" />
 
                                         <androidx.appcompat.widget.AppCompatTextView
                                             android:layout_width="wrap_content"
@@ -393,7 +387,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@{data.humidity +`%`}"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp"
+                                            android:textSize="10sp"
                                             tools:text="@string/humidity_text" />
 
                                     </LinearLayout>
@@ -421,7 +415,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@string/develop_by"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp" />
+                                            android:textSize="10sp" />
 
                                         <androidx.appcompat.widget.AppCompatTextView
                                             android:layout_width="wrap_content"
@@ -429,7 +423,7 @@
                                             android:fontFamily="@font/roboto"
                                             android:text="@string/yash"
                                             android:textColor="@color/white"
-                                            android:textSize="12sp" />
+                                            android:textSize="10sp" />
 
                                     </LinearLayout>
 
@@ -443,16 +437,16 @@
                             android:id="@+id/weeklyWeatherRecyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/overviewContainer"
-                            android:layout_alignParentBottom="true"
-                            android:layout_margin="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
                             android:scrollbarSize="1dp"
                             android:scrollbarStyle="insideInset"
+                            android:overScrollMode="never"
                             android:scrollbars="vertical"
                             android:visibility="visible"
                             tools:listitem="@layout/layout_weather_item" />
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </androidx.core.widget.NestedScrollView>
 
