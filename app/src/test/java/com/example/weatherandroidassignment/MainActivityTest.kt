@@ -1,6 +1,7 @@
 package com.example.weatherandroidassignment
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.weatherandroidassignment.ui.activity.MainActivity
 import com.example.weatherandroidassignment.ui.viewmodel.MainViewModel
 import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +36,8 @@ class MainActivityTest {
     fun setup() {
         MockitoAnnotations.initMocks(this)
         Dispatchers.setMain(testDispatcher)
-        mainActivity = MainActivity()
+        mainActivity =
+            MainActivity()
     }
 
     @After

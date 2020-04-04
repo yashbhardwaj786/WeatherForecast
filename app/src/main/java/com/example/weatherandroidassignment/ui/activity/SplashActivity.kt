@@ -4,17 +4,22 @@ import android.Manifest
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import com.example.weatherandroidassignment.R
 import com.example.weatherandroidassignment.utils.toast
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.*
+import java.util.*
 
 class SplashActivity : BaseActivity(), LocationListener,
     GoogleApiClient.ConnectionCallbacks,
@@ -28,6 +33,7 @@ class SplashActivity : BaseActivity(), LocationListener,
     var lon = 0.0
     private var googleApiClient: GoogleApiClient? = null
     private var locationRequest: LocationRequest? = null
+    private var locationUpdate = MutableLiveData<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +54,30 @@ class SplashActivity : BaseActivity(), LocationListener,
             enableGPS()
         }
 
+        locationUpdate.observe(this, androidx.lifecycle.Observer {
+            val geoCoder = Geocoder(this, Locale.getDefault())
+            try {
+                val addresses: List<Address> =
+                    geoCoder.getFromLocation(lat, lon, 1)
+                if (addresses.isNotEmpty()) {
+                    val splashTimeHandler = Handler()
+                    val finalizer = Runnable {
+                        Intent(this, MainActivity::class.java).also {
+                            it.putExtra(CITY_NAME, addresses[0].locality)
+                            startActivity(it)
+                            finish()
+                        }
+                    }
+                    splashTimeHandler.postDelayed(finalizer, 2000)
 
+                } else {
+                    enableGPS()
+                }
+            } catch (ex: java.lang.Exception) {
+                enableGPS()
+            }
+
+        })
 
     }
 
@@ -60,6 +89,7 @@ class SplashActivity : BaseActivity(), LocationListener,
                 googleApiClient,
                 this as com.google.android.gms.location.LocationListener
             )
+            locationUpdate.postValue("Location Update")
         }
     }
 
@@ -119,6 +149,7 @@ class SplashActivity : BaseActivity(), LocationListener,
             if (location != null) {
                 lat = location!!.latitude
                 lon = location!!.longitude
+                locationUpdate.postValue("Location Update")
 
             } else {
                 LocationServices.FusedLocationApi.requestLocationUpdates(
@@ -127,6 +158,7 @@ class SplashActivity : BaseActivity(), LocationListener,
                     mLocationCallback,
                     null
                 )
+                locationUpdate.postValue("Location Update")
             }
 
         } catch (e: Exception) {
@@ -199,4 +231,10 @@ class SplashActivity : BaseActivity(), LocationListener,
             }
         }
     }
+
+
+    companion object {
+        const val CITY_NAME = "city_name"
+    }
+
 }

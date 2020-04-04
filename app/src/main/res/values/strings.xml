@@ -6,7 +6,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="welcome_message">Welcome to Weather Forecast</string>
     <string name="location_denied_message">Accepting location is compulsory. Navigating back to the previous screen.</string>
-    <string name="city_name_hint">Jaipur</string>
+    <string name="city_name_hint">Jaipur (IN)</string>
     <string name="date_hint">18 March 2020, 10:00 PM</string>
     <string name="status_hint">haze</string>
     <string name="temp_hint">23°C</string>
