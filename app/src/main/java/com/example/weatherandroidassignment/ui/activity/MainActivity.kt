@@ -5,7 +5,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherandroidassignment.R
-import com.example.weatherandroidassignment.data.network.response.WeatherResult
 import com.example.weatherandroidassignment.databinding.ActivityMainBinding
 import com.example.weatherandroidassignment.ui.activity.SplashActivity.Companion.CITY_NAME
 import com.example.weatherandroidassignment.ui.modelfactory.MainViewModelFactory
@@ -27,7 +26,6 @@ class MainActivity : BaseActivity(), KodeinAware {
     private var isSameCity = false
     private var cityName = ""
     lateinit var binding: ActivityMainBinding
-    var weatherResult: WeatherResult? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +60,7 @@ class MainActivity : BaseActivity(), KodeinAware {
 
         mainViewModel.onSuccess.observe(this, Observer {
             mainViewModel.onError.set(false)
-            weatherResult = it.list[0]
+            var weatherResult = it.list[0]
             binding.data = weatherResult
             binding.cityData = it.city
             val c: Date = Calendar.getInstance().time
@@ -72,18 +70,17 @@ class MainActivity : BaseActivity(), KodeinAware {
                 binding.date = sdf.format(c)
             }
 
-            it.city.sunrise.let { sunriseTime->
+            weatherResult.sunrise.let { sunriseTime->
                 val sunRISETTime = getTimeInHours(sunriseTime*1000, DateFormat.TWELVE_FOUR_HOURS)
                 binding.sunriseTime = sunRISETTime
             }
 
-            it.city.sunset.let { sunsetTime->
+            weatherResult.sunset.let { sunsetTime->
                 val sunsetTTime = getTimeInHours(sunsetTime*1000, DateFormat.TWELVE_FOUR_HOURS)
                 binding.sunsetTime = sunsetTTime
             }
 
-
-            weatherResult?.weather?.let { weatherData->
+            weatherResult.weather.let { weatherData->
                 if (weatherData.isNotEmpty()) {
                     weatherData[0].description.let { status ->
                         binding.status = status

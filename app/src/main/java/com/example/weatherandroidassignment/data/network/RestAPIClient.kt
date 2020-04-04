@@ -13,9 +13,10 @@ import retrofit2.http.Query
 
 interface RestAPIClient {
 
-    @GET("forecast")
+    @GET("forecast/daily")
     suspend fun getWeatherDetails(@Query("q") cityName: String, @Query("units") units: String,
-                          @Query("appid") api_key: String, @Query("cnt") count: String): Response<WeatherResponse>
+                                  @Query("appid") api_key: String, @Query("cnt") count: String,
+                                  @Query("mode") mode: String): Response<WeatherResponse>
 
     companion object {
         operator fun invoke(

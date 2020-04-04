@@ -2,8 +2,8 @@ package com.example.weatherandroidassignment.data.network.response
 
 
 data class WeatherResponse(
-    val message: String,
-    val cod: Int,
+    val message: Double,
+    val cod: String,
     val cnt: Int,
     val city: CityData,
     val list: ArrayList<WeatherResult>
@@ -15,19 +15,29 @@ data class CityData(
     val coord: CoordinateData,
     val country: String,
     val population: Long,
-    val timezone: Long,
-    val sunrise: Long,
-    val sunset: Long
+    val timezone: Long
 )
 
 data class WeatherResult(
     val dt: Long,
-    val main: MainData,
+    val sunrise: Long,
+    val sunset: Long,
+    val temp: TemperatureData,
+    val feels_like: MainData,
+    val pressure: Long,
+    val humidity: Long,
     val weather: ArrayList<WeatherData>,
-    val clouds: CloudsData,
-    val wind: WindData,
-    val sys: SunsetData,
-    val dt_txt: String
+    val speed: Double,
+    val deg: Int,
+    val clouds: Long
+)
+data class TemperatureData(
+    val day: Double,
+    val min: Double,
+    val max: Double,
+    val night: Double,
+    val eve: Double,
+    val morn: Double
 )
 
 data class CoordinateData(
@@ -43,26 +53,8 @@ data class WeatherData(
 )
 
 data class MainData(
-    val temp: Double,
-    val feels_like: Double,
-    val temp_max: Double,
-    val temp_min: Double,
-    val pressure: Int,
-    val humidity: Int,
-    val sea_level: Int,
-    val grnd_level: Int,
-    val temp_kf: Float
-)
-
-data class WindData(
-    val speed: Double,
-    val deg: Int
-)
-
-data class CloudsData(
-    val all: Int
-)
-
-data class SunsetData(
-    val pod: String
+    val day: Double,
+    val night: Double,
+    val eve: Double,
+    val morn: Double
 )

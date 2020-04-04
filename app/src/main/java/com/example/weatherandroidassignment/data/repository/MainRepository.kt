@@ -12,7 +12,7 @@ class MainRepository(
     private val quotes = MutableLiveData<WeatherResponse>()
 
     suspend fun getWeatherResult(cityName: String): WeatherResponse {
-        val response = apiRequest { api.getWeatherDetails(cityName, METRIC, API_KEY, DAY_COUNT) }
+        val response = apiRequest { api.getWeatherDetails(cityName, METRIC, API_KEY, DAY_COUNT, MODE) }
         quotes.postValue(response)
         return response
     }
@@ -21,5 +21,6 @@ class MainRepository(
         const val API_KEY = "5ad7218f2e11df834b0eaf3a33a39d2a"
         const val METRIC = "metric"
         const val DAY_COUNT = "7"
+        const val MODE = "json"
     }
 }
