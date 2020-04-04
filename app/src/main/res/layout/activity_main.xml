@@ -17,6 +17,10 @@
             type="String" />
 
         <variable
+            name="averageTemp"
+            type="String" />
+
+        <variable
             name="date"
             type="String" />
 
@@ -155,7 +159,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_marginEnd="10dp"
                                 android:fontFamily="@font/roboto_italic"
-                                android:text="@{data.temp.day + @string/degree +`C`}"
+                                android:text="@{averageTemp + @string/degree +`C`}"
                                 android:textColor="@color/white"
                                 android:textSize="50sp"
                                 tools:text="@string/temp_hint" />
@@ -175,7 +179,7 @@
                                     android:gravity="center"
                                     android:text="@{`Min Temp:`+data.temp.min + @string/degree +`C`}"
                                     android:textColor="@color/white"
-                                    android:textSize="14sp"
+                                    android:textSize="18sp"
                                     tools:text="@string/min_temp_hint" />
 
                                 <androidx.appcompat.widget.AppCompatTextView
@@ -187,7 +191,7 @@
                                     android:gravity="center"
                                     android:text="@{`Max Temp:`+data.temp.max + @string/degree +`C`}"
                                     android:textColor="@color/white"
-                                    android:textSize="14sp"
+                                    android:textSize="18sp"
                                     tools:text="@string/max_temp_hint" />
                             </LinearLayout>
 
@@ -308,7 +312,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/roboto"
-                                        android:text="@{data.speed +` km/hr`}"
+                                        android:text="@{data.speed +` m/s`}"
                                         android:textColor="@color/white"
                                         android:textSize="12sp"
                                         tools:text="@string/wind_speed" />
@@ -352,7 +356,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/roboto"
-                                        android:text="@{data.pressure +` mb`}"
+                                        android:text="@{data.pressure +` hpa`}"
                                         android:textColor="@color/white"
                                         android:textSize="12sp"
                                         tools:text="@string/pressure_text" />

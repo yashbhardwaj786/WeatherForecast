@@ -18,6 +18,7 @@ import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import java.util.*
 
+
 class MainActivity : BaseActivity(), KodeinAware {
 
     override val kodein by kodein()
@@ -66,27 +67,47 @@ class MainActivity : BaseActivity(), KodeinAware {
             val c: Date = Calendar.getInstance().time
 
             val df = getSimpleDateFormat(DateFormat.USER_READABLE_WITH_TIME)
-            df?.let { sdf->
+            df?.let { sdf ->
                 binding.date = sdf.format(c)
             }
 
-            weatherResult.sunrise.let { sunriseTime->
-                val sunRISETTime = getTimeInHours(sunriseTime*1000, DateFormat.TWELVE_FOUR_HOURS)
+            weatherResult.sunrise.let { sunriseTime ->
+                val sunRISETTime = getTimeInHours(sunriseTime * 1000, DateFormat.TWELVE_FOUR_HOURS)
                 binding.sunriseTime = sunRISETTime
             }
 
-            weatherResult.sunset.let { sunsetTime->
-                val sunsetTTime = getTimeInHours(sunsetTime*1000, DateFormat.TWELVE_FOUR_HOURS)
+            weatherResult.sunset.let { sunsetTime ->
+                val sunsetTTime = getTimeInHours(sunsetTime * 1000, DateFormat.TWELVE_FOUR_HOURS)
                 binding.sunsetTime = sunsetTTime
             }
 
-            weatherResult.weather.let { weatherData->
+            weatherResult.weather.let { weatherData ->
                 if (weatherData.isNotEmpty()) {
                     weatherData[0].description.let { status ->
                         binding.status = status
 
                     }
                 }
+            }
+
+            weatherResult.temp.let { temp ->
+
+                val cal = Calendar.getInstance()
+                var temperature = when (cal[Calendar.HOUR_OF_DAY]) {
+                    in 4..9 -> {
+                        String.format("%.2f", temp.morn)
+                    }
+                    in 10..14 -> {
+                        String.format("%.2f", temp.day)
+                    }
+                    in 15..19 -> {
+                        String.format("%.2f", temp.eve)
+                    }
+                    else -> {
+                        String.format("%.2f", temp.night)
+                    }
+                }
+                binding.averageTemp = temperature
             }
 
         })
